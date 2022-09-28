@@ -49,6 +49,7 @@ async function fetchImages() {
     const totalHits = response.data.totalHits;
 
     if (loadHits === 0) {
+      refs.loadMoreBtn.classList.add('is-hidden');
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
