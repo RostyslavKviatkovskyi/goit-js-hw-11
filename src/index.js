@@ -6,7 +6,7 @@ import { markup } from './gallery-markup';
 const refs = {
   formEl: document.querySelector('.search-form'),
   inputEl: document.querySelector('input'),
-  sumbitBtn: document.querySelector('button'),
+  submitBtn: document.querySelector('button'),
   galleryEl: document.querySelector('.gallery'),
   loadMoreBtn: document.querySelector('.load-more'),
 };
@@ -20,13 +20,15 @@ const KEY = '30215084-a49b4b97181de8b711ff6b4da';
 const params = {
   page: 1,
   perPage: 40,
-  query: '',
+  q: '',
 };
+
+refs.loadMoreBtn.classList.add('is-hidden');
 
 function onFormSubmit(event) {
   event.preventDefault();
   params.page = 1;
-  params.query = event.currentTarget.elements.searchQuery.value;
+  params.q = refs.inputEl.value;
   refs.galleryEl.innerHTML = '';
   refs.loadMoreBtn.classList.add('is-hidden');
   fetchImages();
@@ -65,7 +67,7 @@ async function fetchImages() {
     // } of ${totalHits}`;
 
     if (params.page * params.per_page >= totalHits) {
-      refs.buttonLoadMore.classList.add('is-hidden');
+      refs.loadMoreBtn.classList.add('is-hidden');
       Notiflix.Notify.warning(
         "We're sorry, but you've reached the end of search results."
       );
