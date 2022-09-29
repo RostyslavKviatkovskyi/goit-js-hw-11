@@ -63,11 +63,7 @@ async function fetchImages() {
     galleryMarkup(response.data.hits);
     refs.loadMoreBtn.classList.remove('is-hidden');
 
-    // refs.outputPagesLoad.textContent = `${
-    //   (params.page - 1) * params.per_page + loadHits
-    // } of ${totalHits}`;
-
-    if (params.page * params.per_page >= totalHits) {
+    if (params.page * params.perPage >= totalHits) {
       refs.loadMoreBtn.classList.add('is-hidden');
       Notiflix.Notify.warning(
         "We're sorry, but you've reached the end of search results."
